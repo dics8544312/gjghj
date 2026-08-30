@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: math_tutor_bot
+    restart: always
+    environment:
+      # Bot Configuration
+      BOT_TOKEN: ${BOT_TOKEN}
+      ADMIN_IDS: ${ADMIN_IDS}
+      ERROR_LOG_CHANNEL_ID: ${ERROR_LOG_CHANNEL_ID}
+      BACKUP_CHANNEL_ID: ${BACKUP_CHANNEL_ID}
+      
+      # Database (provided by hosting)
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      
+      # OpenAI
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL}
+      
+      # Application
+      DEBUG: ${DEBUG}
+      PYTHONPATH: /app
+    command: python main.py
